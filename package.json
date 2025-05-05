@@ -1,0 +1,15 @@
+{
+  "name": "eslint-plugin-error-context",
+  "version": "0.0.1",
+  "description": "ESLint rules to detect swallowed error causes when rethrowing exceptions.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Amnish Singh Arora",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}

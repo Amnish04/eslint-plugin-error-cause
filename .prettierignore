@@ -1,0 +1,31 @@
+# Ignore the build directory where the transpiled files are stored
+/lib
+
+# Ignore TypeScript declaration files
+*.d.ts
+
+# Ignore node_modules directory
+node_modules
+
+# Ignore compiled JavaScript files (if you have any manually compiled files in source)
+*.js
+
+# Ignore test output or coverage directories
+/coverage
+/tests
+
+# Ignore .eslintcache file
+.eslintcache
+
+# Ignore package-lock.json or yarn.lock (if you don't want to format these)
+package-lock.json
+yarn.lock
+
+# Ignore temporary or editor-related files
+*.log
+*.tmp
+*.swp
+.vscode
+.idea
+
+# If you have any other files or directories that shouldn't be formatted, you can add them here
