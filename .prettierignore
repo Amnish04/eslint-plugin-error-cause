@@ -12,7 +12,6 @@ node_modules
 
 # Ignore test output or coverage directories
 /coverage
-/tests
 
 # Ignore .eslintcache file
 .eslintcache
