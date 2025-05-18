@@ -13,6 +13,7 @@ export default defineConfig([
         files: ["**/*.js", "**/*.mjs"],
         languageOptions: {
             parser,
+            ecmaVersion: 2024,
         },
     },
     // @eslint/js

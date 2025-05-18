@@ -5,12 +5,15 @@ interface MyPluginDocs {
 }
 
 const createRule = ESLintUtils.RuleCreator<MyPluginDocs>(
-    // TODO: Fix this with the actual docs URL when published to npm.
-    (name) => `https://example.com/rule/${name}`
+    () => "https://github.com/Amnish04/eslint-plugin-error-context"
 );
 
 // https://typescript-eslint.io/developers/custom-rules#rulecreator
-type MessageIds = "missing-cause";
+const messages = {
+    "missing-cause":
+        "Include the original caught error as the `cause` of the custom error.",
+};
+type MessageIds = keyof typeof messages;
 type Options = []; // This rule does not require any options
 
 export const noSwallowedErrorContext = createRule<Options, MessageIds>({
@@ -35,10 +38,7 @@ export const noSwallowedErrorContext = createRule<Options, MessageIds>({
                 "disallow losing original error `cause` when rethrowing custom errors.",
             recommended: true,
         },
-        messages: {
-            "missing-cause":
-                "Include the original caught error as the `cause` of the custom error.",
-        },
+        messages,
         type: "suggestion",
         schema: [],
     },
