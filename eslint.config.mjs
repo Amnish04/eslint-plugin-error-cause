@@ -4,12 +4,22 @@ import tseslint from "typescript-eslint";
 import { defineConfig } from "eslint/config";
 import eslintPlugin from "eslint-plugin-eslint-plugin";
 import nodePlugin from "eslint-plugin-n";
+import parser from "@typescript-eslint/parser";
 
 // This config follows suggestions from official ESLint custom plugin docs
 // https://eslint.org/docs/latest/extend/plugins#linting-a-plugin
 export default defineConfig([
+    {
+        files: ["**/*.js", "**/*.mjs"],
+        languageOptions: {
+            parser,
+        },
+    },
     // @eslint/js
-    { files: ["**/*.{js,mjs,cjs,ts}"], plugins: { js }, extends: ["js/recommended"] },
+    {
+        plugins: { js },
+        extends: ["js/recommended"],
+    },
     // eslint-plugin-eslint-plugin
     eslintPlugin.configs["flat/recommended"],
     {
@@ -26,6 +36,9 @@ export default defineConfig([
             "n/no-unpublished-import": "off",
         },
     },
-    { files: ["**/*.{js,mjs,cjs,ts}"], languageOptions: { globals: globals.browser } },
+    {
+        files: ["**/*.{js,mjs,cjs,ts}"],
+        languageOptions: { globals: globals.browser },
+    },
     tseslint.configs.recommended,
 ]);

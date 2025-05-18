@@ -1,23 +1,33 @@
-import { swallowedErrorContext } from "../src/rules";
-import { RuleTester } from "eslint";
+import { noSwallowedErrorContext } from "../src/rules";
+import { RuleTester } from "@typescript-eslint/rule-tester";
+import parser from "@typescript-eslint/parser";
 
-const ruleTester = new RuleTester();
+const ruleTester = new RuleTester({
+    languageOptions: {
+        parser,
+        parserOptions: {
+            projectService: {
+                allowDefaultProject: ["*.ts*"],
+            },
+            tsconfigRootDir: __dirname,
+        },
+    },
+});
 
-ruleTester.run("swallowed-error-context", swallowedErrorContext, {
+ruleTester.run("no-swallowed-error-context", noSwallowedErrorContext, {
     valid: [
         {
             code: "var foo = true",
-            options: [{ allowFoo: true }],
         },
     ],
     invalid: [
         {
             code: "var invalidVariable = true",
-            errors: [{ message: "Unexpected invalid variable." }],
+            errors: [{ messageId: "missing-cause" }],
         },
         {
-            code: "var invalidVariable = true",
-            errors: [{ message: /^Unexpected.+variable/ }],
+            code: "var invalidVariable = false",
+            errors: [{ messageId: "missing-cause" }],
         },
     ],
 });
