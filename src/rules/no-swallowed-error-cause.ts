@@ -16,7 +16,7 @@ const messages = {
 type MessageIds = keyof typeof messages;
 type Options = []; // This rule does not require any options
 
-export const noSwallowedErrorContext = createRule<Options, MessageIds>({
+export const noSwallowedErrorCause = createRule<Options, MessageIds>({
     create(context) {
         return {
             CatchClause(node) {

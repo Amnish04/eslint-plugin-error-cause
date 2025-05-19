@@ -1,7 +1,7 @@
 const recommended = {
-    plugins: ["error-context"],
+    plugins: ["error-cause"],
     rules: {
-        "error-context/swallowed-error-context": "error",
+        "error-cause/swallowed-error-cause": "error",
     },
 };
 

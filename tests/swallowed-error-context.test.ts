@@ -23,7 +23,7 @@ const ruleTester = new RuleTester({
     },
 });
 
-ruleTester.run("no-swallowed-error-context", noSwallowedErrorContext, {
+ruleTester.run("no-swallowed-error-cause", noSwallowedErrorContext, {
     valid: [
         {
             code: `

@@ -1,5 +1,5 @@
 {
-    "name": "eslint-plugin-error-context",
+    "name": "eslint-plugin-error-cause",
     "version": "0.0.1",
     "description": "ESLint rules to detect swallowed error causes when rethrowing exceptions.",
     "main": "index.js",

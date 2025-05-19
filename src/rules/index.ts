@@ -1,1 +1,1 @@
-export { noSwallowedErrorContext } from "./swallowed-error-context";
+export { noSwallowedErrorCause as noSwallowedErrorContext } from "./no-swallowed-error-cause";

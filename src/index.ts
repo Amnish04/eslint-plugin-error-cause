@@ -7,7 +7,7 @@ const plugin = {
     meta,
     configs,
     rules: {
-        "swallowed-error-context": noSwallowedErrorContext,
+        "no-swallowed-error-cause": noSwallowedErrorContext,
     },
     processors: {},
 };
