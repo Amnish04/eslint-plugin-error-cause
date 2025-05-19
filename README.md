@@ -9,7 +9,8 @@ From [MDN docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Referenc
 This property was only added to Node in its `16.9.0` release, before which JavaScript developers used to rely on workarounds like including the `cause` error message in the `symptom` error message like so:
 ```ts
 catch(error) {
-    throw new Error(`Failed to perform operation xyz: ${error.message}`); // NO LONGER NEEDED ❌
+    // NO LONGER NEEDED ❌
+    throw new Error(`Failed to perform operation xyz: ${error.message}`);
 }
 ```
 
@@ -21,5 +22,9 @@ catch(error) {
     });
 }
 ```
+
+## Setup
+
+Publishing to `npm` is in progress ⚠️
 
 
