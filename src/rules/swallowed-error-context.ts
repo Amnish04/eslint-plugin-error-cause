@@ -1,4 +1,4 @@
-import { ESLintUtils } from "@typescript-eslint/utils";
+import { ESLintUtils, TSESTree } from "@typescript-eslint/utils";
 
 interface MyPluginDocs {
     recommended: boolean;
@@ -19,12 +19,42 @@ type Options = []; // This rule does not require any options
 export const noSwallowedErrorContext = createRule<Options, MessageIds>({
     create(context) {
         return {
-            FunctionDeclaration(node) {
-                if (node.id != null) {
-                    if (/^[a-z]/.test(node.id.name)) {
+            CatchClause(node) {
+                // Check if there is a root error that could have been lost
+                const rootError =
+                    node.param?.type === TSESTree.AST_NODE_TYPES.Identifier
+                        ? node.param
+                        : null;
+                if (!rootError) {
+                    return;
+                }
+
+                // Find the first Throw Statement
+                const customThrow = findThrowStatement(node.body);
+
+                // Check if a new error is being thrown
+                if (customThrow && isThrowingNewError(customThrow)) {
+                    // Check if there is a cause attached to the new error
+                    const customThrowCause = findThrowNewErrorCause(customThrow);
+                    if (!customThrowCause) {
                         context.report({
                             messageId: "missing-cause",
-                            node: node.id,
+                            node: customThrow,
+                        });
+                        return;
+                    }
+
+                    // Verify the attached cause matches the root error that is being handled
+                    if (
+                        !(
+                            customThrowCause?.type ===
+                                TSESTree.AST_NODE_TYPES.Identifier &&
+                            customThrowCause.name === rootError.name
+                        )
+                    ) {
+                        context.report({
+                            messageId: "missing-cause",
+                            node: customThrowCause,
                         });
                     }
                 }
@@ -44,3 +74,39 @@ export const noSwallowedErrorContext = createRule<Options, MessageIds>({
     },
     defaultOptions: [],
 });
+
+function findThrowStatement(block: TSESTree.BlockStatement) {
+    return block.body.find(
+        (node) => node.type === TSESTree.AST_NODE_TYPES.ThrowStatement
+    );
+}
+
+type ThrowNewErrorStatement = Omit<TSESTree.ThrowStatement, "argument"> & {
+    argument: TSESTree.NewExpression;
+};
+
+function isThrowingNewError(
+    throwStatement: TSESTree.ThrowStatement
+): throwStatement is ThrowNewErrorStatement {
+    return (
+        throwStatement.argument.type === TSESTree.AST_NODE_TYPES.NewExpression &&
+        throwStatement.argument.callee.type === TSESTree.AST_NODE_TYPES.Identifier &&
+        throwStatement.argument.callee.name === "Error"
+    );
+}
+
+function findThrowNewErrorCause(throwStatement: ThrowNewErrorStatement) {
+    const newExpression = throwStatement.argument;
+    const errorOptions = newExpression.arguments[1];
+    const causeProperty =
+        errorOptions?.type === TSESTree.AST_NODE_TYPES.ObjectExpression
+            ? (errorOptions.properties.find(
+                  (prop) =>
+                      prop.type === TSESTree.AST_NODE_TYPES.Property &&
+                      prop.key.type === TSESTree.AST_NODE_TYPES.Identifier &&
+                      prop.key.name === "cause"
+              ) as TSESTree.Property)
+            : undefined;
+
+    return causeProperty?.value;
+}
