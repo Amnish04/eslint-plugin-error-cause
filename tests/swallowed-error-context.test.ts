@@ -36,16 +36,141 @@ ruleTester.run("no-swallowed-error-context", noSwallowedErrorContext, {
                 }
             `,
         },
-    ],
-    invalid: [
         {
             code: `
                 try {
-                    throw new Error("Original error");
-                } catch (error) {
-                    // No error cause specified
-                    throw new Error("Failed to perform error prone operations");
+                doSomething();
+                } catch (e) {
+                // No throw, should be valid
+                console.error(e);
                 }
+            `,
+        },
+        {
+            code: `
+                try {
+                doSomething();
+                } catch {
+                // No catch param, should be valid
+                throw new Error("Failed");
+                }
+            `,
+        },
+        {
+            code: `
+                try {
+                doSomething();
+                } catch (err) {
+                throw new Error("Failed", { cause: err, extra: 42 });
+                }
+            `,
+        },
+    ],
+    invalid: [
+        // 1. Throws a new Error without cause, even though an error was caught
+        {
+            code: `
+            try {
+            doSomething();
+            } catch (err) {
+            throw new Error("Something failed");
+            }
+            `,
+            errors: [{ messageId: "missing-cause" }],
+        },
+        // 2. Throws a new Error with unrelated cause
+        {
+            code: `
+            try {
+            doSomething();
+            } catch (err) {
+            const unrelated = new Error("other");
+            throw new Error("Something failed", { cause: unrelated });
+            }
+            `,
+            errors: [{ messageId: "missing-cause" }],
+        },
+        // 3. Throws a new Error with cause property, but value is not the caught error
+        {
+            code: `
+                try {
+                doSomething();
+                } catch (error) {
+                throw new Error("Failed", { cause: "notTheError" });
+                }
+            `,
+            errors: [{ messageId: "missing-cause" }],
+        },
+        // 4. Throws a new Error, cause property is present but misspelled
+        {
+            code: `
+                try {
+                doSomething();
+                } catch (error) {
+                throw new Error("Failed", { cuse: error });
+                }
+            `,
+            errors: [{ messageId: "missing-cause" }],
+        },
+        // 5. Throws a new Error, cause property is present but value is a different identifier
+        {
+            code: `
+                try {
+                doSomething();
+                } catch (err) {
+                const e = err;
+                throw new Error("Failed", { cause: e });
+                }
+            `,
+            errors: [{ messageId: "missing-cause" }],
+        },
+        // 6. Throws a new Error, cause property is present but value is a member expression
+        {
+            code: `
+                try {
+                doSomething();
+                } catch (error) {
+                throw new Error("Failed", { cause: error.message });
+                }
+            `,
+            errors: [{ messageId: "missing-cause" }],
+        },
+        // 7. Throws a new Error, cause property is present but value is a literal
+        {
+            code: `
+                try {
+                doSomething();
+                } catch (error) {
+                throw new Error("Failed", { cause: 123 });
+                }
+            `,
+            errors: [{ messageId: "missing-cause" }],
+        },
+        // 8. Throws a new Error, cause property is present but value is a function call
+        {
+            code: `
+                try {
+                doSomething();
+                } catch (error) {
+                throw new Error("Failed", { cause: getError() });
+                }
+            `,
+            errors: [{ messageId: "missing-cause" }],
+        },
+        // throw in a heavily nested catch block
+        {
+            code: `
+              try {
+                doSomething();
+              } catch (error) {
+                if (shouldThrow) {
+                  while (true) {
+                    if (Math.random() > 0.5) {
+                      throw new Error("Failed without cause");
+                    }
+                  }
+                }
+              }
             `,
             errors: [{ messageId: "missing-cause" }],
         },
