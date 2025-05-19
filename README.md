@@ -1,6 +1,6 @@
-![NPM Version](https://img.shields.io/npm/v/eslint-plugin-error-cause?color=green)
-
 # eslint-plugin-error-cause
+
+[![NPM Version](https://img.shields.io/npm/v/eslint-plugin-error-cause?color=green)](https://www.npmjs.com/package/eslint-plugin-error-cause)
 
 An ESLint plugin with rules to report loss of original [error cause](https://nodejs.org/api/errors.html#errorcaus), when rethrowing errors.
 
