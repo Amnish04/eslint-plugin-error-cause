@@ -10,7 +10,7 @@ import parser from "@typescript-eslint/parser";
 // https://eslint.org/docs/latest/extend/plugins#linting-a-plugin
 export default defineConfig([
     {
-        files: ["**/*.js", "**/*.mjs"],
+        files: ["**/*.js", "**/*.mjs", "**/*.ts"],
         languageOptions: {
             parser,
             ecmaVersion: 2024,
@@ -38,7 +38,7 @@ export default defineConfig([
         },
     },
     {
-        files: ["**/*.{js,mjs,cjs,ts}"],
+        files: ["src/**/*.{js,mjs,cjs,ts}"],
         languageOptions: { globals: globals.browser },
     },
     tseslint.configs.recommended,
