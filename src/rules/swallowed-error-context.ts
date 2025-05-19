@@ -75,10 +75,23 @@ export const noSwallowedErrorContext = createRule<Options, MessageIds>({
     defaultOptions: [],
 });
 
-function findThrowStatement(block: TSESTree.BlockStatement) {
-    return block.body.find(
-        (node) => node.type === TSESTree.AST_NODE_TYPES.ThrowStatement
-    );
+/**
+ * Finds and returns the first `ThrowStatement` in the block, `undefined` if not found.
+ */
+function findThrowStatement(
+    block: TSESTree.BlockStatement
+): TSESTree.ThrowStatement | undefined {
+    for (const node of block.body) {
+        if (node.type === TSESTree.AST_NODE_TYPES.ThrowStatement) {
+            return node;
+        }
+        // Check nested blocks (e.g., if, for, while, etc.)
+        if ("body" in node && Array.isArray(node.body)) {
+            const nested = findThrowStatement(node as TSESTree.BlockStatement);
+            if (nested) return nested;
+        }
+    }
+    return undefined;
 }
 
 type ThrowNewErrorStatement = Omit<TSESTree.ThrowStatement, "argument"> & {
