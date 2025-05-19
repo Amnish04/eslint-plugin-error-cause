@@ -85,10 +85,46 @@ function findThrowStatement(
         if (node.type === TSESTree.AST_NODE_TYPES.ThrowStatement) {
             return node;
         }
+
         // Check nested blocks (e.g., if, for, while, etc.)
-        if ("body" in node && Array.isArray(node.body)) {
-            const nested = findThrowStatement(node as TSESTree.BlockStatement);
-            if (nested) return nested;
+        if (node.type === TSESTree.AST_NODE_TYPES.IfStatement) {
+            if (node.consequent.type === TSESTree.AST_NODE_TYPES.BlockStatement) {
+                const throwStatement = findThrowStatement(node.consequent);
+                if (throwStatement) {
+                    return throwStatement;
+                }
+            } else if (
+                node.consequent.type === TSESTree.AST_NODE_TYPES.ThrowStatement
+            ) {
+                return node.consequent;
+            }
+        } else if (node.type === TSESTree.AST_NODE_TYPES.SwitchStatement) {
+            for (const switchCase of node.cases) {
+                for (const statement of switchCase.consequent) {
+                    if (statement.type === TSESTree.AST_NODE_TYPES.ThrowStatement) {
+                        return statement;
+                    } else if (
+                        statement.type === TSESTree.AST_NODE_TYPES.BlockStatement
+                    ) {
+                        const throwStatement = findThrowStatement(statement);
+                        if (throwStatement) {
+                            return throwStatement;
+                        }
+                    }
+                }
+            }
+        }
+        // Other general constructs with bodies like loops, try ...
+        else if (
+            "body" in node &&
+            node.body &&
+            "type" in node.body &&
+            node.body.type === TSESTree.AST_NODE_TYPES.BlockStatement
+        ) {
+            const throwStatement = findThrowStatement(node.body);
+            if (throwStatement) {
+                return throwStatement;
+            }
         }
     }
     return undefined;

@@ -65,6 +65,23 @@ ruleTester.run("no-swallowed-error-context", noSwallowedErrorContext, {
                 }
             `,
         },
+        // Complex construct with `SwitchStatement`
+        {
+            code: `
+              try {
+                doSomething();
+              } catch (error) {
+                switch (error.code) {
+                  case "A":
+                    throw new Error("Type A", { cause: error });
+                  case "B":
+                    throw new Error("Type B", { cause: error });
+                  default:
+                    throw new Error("Other", { cause: error });
+                }
+              }
+            `,
+        },
     ],
     invalid: [
         // 1. Throws a new Error without cause, even though an error was caught
@@ -157,7 +174,7 @@ ruleTester.run("no-swallowed-error-context", noSwallowedErrorContext, {
             `,
             errors: [{ messageId: "missing-cause" }],
         },
-        // throw in a heavily nested catch block
+        // 9. throw in a heavily nested catch block
         {
             code: `
               try {
@@ -169,6 +186,24 @@ ruleTester.run("no-swallowed-error-context", noSwallowedErrorContext, {
                       throw new Error("Failed without cause");
                     }
                   }
+                }
+              }
+            `,
+            errors: [{ messageId: "missing-cause" }],
+        },
+        // 10. construct with a `switch` statement
+        {
+            code: `
+              try {
+                doSomething();
+              } catch (error) {
+                switch (error.code) {
+                  case "A":
+                    throw new Error("Type A");
+                  case "B":
+                    throw new Error("Type B", { cause: error });
+                  default:
+                    throw new Error("Other", { cause: error });
                 }
               }
             `,
