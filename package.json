@@ -7,7 +7,17 @@
         "test": "vitest --run",
         "lint": "eslint ."
     },
-    "keywords": [],
+    "keywords": [
+        "eslint",
+        "eslintplugin",
+        "eslint-plugin",
+        "typescript",
+        "lint",
+        "error",
+        "cause",
+        "errors",
+        "plugin"
+    ],
     "author": "Amnish Singh Arora",
     "license": "ISC",
     "devDependencies": {
@@ -25,6 +35,11 @@
     },
     "dependencies": {
         "@typescript-eslint/utils": "^8.32.1"
+    },
+    "peerDependencies": {
+        "eslint": ">=9.0.0",
+        "typescript": ">=5.0.0",
+        "@typescript-eslint/parser": ">=8.32.1"
     },
     "engines": {
         "node": ">=16.9.0"
