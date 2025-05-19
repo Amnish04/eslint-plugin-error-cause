@@ -1,4 +1,4 @@
-import configs from "./configs";
+import * as configs from "./configs";
 import packageJson from "../package.json";
 import { noSwallowedErrorContext } from "./rules";
 const meta = { name: packageJson.name, version: packageJson.version };
