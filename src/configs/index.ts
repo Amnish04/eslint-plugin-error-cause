@@ -1,3 +1,3 @@
-import recommended from "./recommended";
+import { recommended } from "./recommended";
 
-export { recommended };
+export default { recommended };

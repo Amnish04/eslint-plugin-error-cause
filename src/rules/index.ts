@@ -1,1 +1,5 @@
-export { noSwallowedErrorCause as noSwallowedErrorContext } from "./no-swallowed-error-cause";
+import { noSwallowedErrorCause } from "./no-swallowed-error-cause";
+
+export default {
+    "no-swallowed-error-cause": noSwallowedErrorCause,
+};

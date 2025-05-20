@@ -1,4 +1,4 @@
-import { noSwallowedErrorContext } from "../src/rules";
+import { noSwallowedErrorCause } from "../src/rules/no-swallowed-error-cause";
 import { RuleTester } from "@typescript-eslint/rule-tester";
 import parser from "@typescript-eslint/parser";
 import * as vitest from "vitest";
@@ -23,7 +23,7 @@ const ruleTester = new RuleTester({
     },
 });
 
-ruleTester.run("no-swallowed-error-cause", noSwallowedErrorContext, {
+ruleTester.run("no-swallowed-error-cause", noSwallowedErrorCause, {
     valid: [
         {
             code: `
