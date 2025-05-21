@@ -36,10 +36,10 @@ catch(error) {
 Install `eslint` and this plugin as dev dependencies.
 
 ```
-pnpm add eslint -D eslint-plugin-react
+pnpm add eslint -D eslint-plugin-error-cause
 ```
 
-## Configuration
+## Configuration (ESLint v8.23.0+ Flat Config)
 
 From [v8.21.0](https://github.com/eslint/eslint/releases/tag/v8.21.0), eslint announced a new config system. In the new system, `.eslintrc*` is no longer used. `eslint.config.js` would be the default config file name. In eslint `v8`, the legacy system (.eslintrc\*) would still be supported, while in eslint `v9`, only the new system would be supported.
 
@@ -87,6 +87,28 @@ export default defineConfig([
 | [no-swallowed-error-cause](src/rules/no-swallowed-error-cause.ts) | disallow losing original error `cause` when rethrowing custom errors. |
 
 <!-- end auto-generated rules list -->
+
+## Rule Example
+
+**Incorrect:**
+
+```ts
+try {
+    // ...
+} catch (error) {
+    throw new Error("Something went wrong: " + error.message);
+}
+```
+
+**Correct:**
+
+```ts
+try {
+    // ...
+} catch (error) {
+    throw new Error("Something went wrong", { cause: error });
+}
+```
 
 ## License
 
