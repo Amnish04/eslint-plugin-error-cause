@@ -4,6 +4,8 @@
 
 An ESLint plugin with rules to report loss of original [error cause](https://nodejs.org/api/errors.html#errorcaus), when rethrowing errors.
 
+## Context
+
 From [MDN docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/cause)
 
 > The cause data property of an Error instance indicates the specific original cause of the error.
@@ -29,6 +31,63 @@ catch(error) {
 }
 ```
 
-## Setup
+## Installation
 
-Publishing to `npm` is in progress ⚠️
+Install `eslint` and this plugin as dev dependencies.
+
+```
+pnpm add eslint -D eslint-plugin-react
+```
+
+## Configuration
+
+From [v8.21.0](https://github.com/eslint/eslint/releases/tag/v8.21.0), eslint announced a new config system. In the new system, `.eslintrc*` is no longer used. `eslint.config.js` would be the default config file name. In eslint `v8`, the legacy system (.eslintrc\*) would still be supported, while in eslint `v9`, only the new system would be supported.
+
+And from `v8.23.0`, eslint CLI starts to look up `eslint.config.js`. This plugin only supports the new config system, so if your eslint is `>=8.23.0`, you're 100% ready to use the new config system.
+
+You could **either** use the preset `recommended` config exported from this project or enable the rule manually.
+
+#### Recommended
+
+This enables `no-swallowed-error-cause` rule with a `warn` severity level.
+
+```ts
+import errorCause from "eslint-plugin-error-cause";
+import { defineConfig } from "eslint/config";
+
+export default defineConfig([errorCause.configs.recommended]);
+```
+
+#### Manual Config
+
+This is particularly useful if you want to set a different severity level than `warn`.
+
+```ts
+import errorCause from "eslint-plugin-error-cause";
+import { defineConfig } from "eslint/config";
+
+export default defineConfig([
+    {
+        plugins: {
+            "error-cause": errorCause,
+        },
+        rules: {
+            "error-cause/no-swallowed-error-cause": "warn",
+        },
+    },
+]);
+```
+
+## List of supported rules
+
+<!-- begin auto-generated rules list -->
+
+| Name                                                              | Description                                                           |
+| :---------------------------------------------------------------- | :-------------------------------------------------------------------- |
+| [no-swallowed-error-cause](src/rules/no-swallowed-error-cause.ts) | disallow losing original error `cause` when rethrowing custom errors. |
+
+<!-- end auto-generated rules list -->
+
+## License
+
+`eslint-plugin-error-cause` is licensed under the [MIT License](https://opensource.org/license/mit).
