@@ -36,7 +36,7 @@ catch(error) {
 Install `eslint` and this plugin as dev dependencies.
 
 ```
-pnpm add eslint -D eslint-plugin-error-cause
+pnpm add -D eslint eslint-plugin-error-cause
 ```
 
 ## Configuration (ESLint v8.23.0+ Flat Config)
