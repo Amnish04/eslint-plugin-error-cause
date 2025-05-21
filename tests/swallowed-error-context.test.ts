@@ -94,6 +94,13 @@ ruleTester.run("no-swallowed-error-cause", noSwallowedErrorCause, {
             }
             `,
             errors: [{ messageId: "missing-cause" }],
+            output: `
+            try {
+            doSomething();
+            } catch (err) {
+            throw new Error("Something failed", { cause: err });
+            }
+            `,
         },
         // 2. Throws a new Error with unrelated cause
         {
@@ -106,6 +113,14 @@ ruleTester.run("no-swallowed-error-cause", noSwallowedErrorCause, {
             }
             `,
             errors: [{ messageId: "missing-cause" }],
+            output: `
+            try {
+            doSomething();
+            } catch (err) {
+            const unrelated = new Error("other");
+            throw new Error("Something failed", { cause: err });
+            }
+            `,
         },
         // 3. Throws a new Error with cause property, but value is not the caught error
         {
@@ -117,6 +132,13 @@ ruleTester.run("no-swallowed-error-cause", noSwallowedErrorCause, {
                 }
             `,
             errors: [{ messageId: "missing-cause" }],
+            output: `
+                try {
+                doSomething();
+                } catch (error) {
+                throw new Error("Failed", { cause: error });
+                }
+            `,
         },
         // 4. Throws a new Error, cause property is present but misspelled
         {
@@ -128,8 +150,16 @@ ruleTester.run("no-swallowed-error-cause", noSwallowedErrorCause, {
                 }
             `,
             errors: [{ messageId: "missing-cause" }],
+            output: `
+                try {
+                doSomething();
+                } catch (error) {
+                throw new Error("Failed", { cause: error });
+                }
+            `,
         },
         // 5. Throws a new Error, cause property is present but value is a different identifier
+        // TODO: We need to start allowing this behavior as it is not actually invalid.
         {
             code: `
                 try {
@@ -140,6 +170,14 @@ ruleTester.run("no-swallowed-error-cause", noSwallowedErrorCause, {
                 }
             `,
             errors: [{ messageId: "missing-cause" }],
+            output: `
+                try {
+                doSomething();
+                } catch (err) {
+                const e = err;
+                throw new Error("Failed", { cause: err });
+                }
+            `,
         },
         // 6. Throws a new Error, cause property is present but value is a member expression
         {
@@ -151,6 +189,13 @@ ruleTester.run("no-swallowed-error-cause", noSwallowedErrorCause, {
                 }
             `,
             errors: [{ messageId: "missing-cause" }],
+            output: `
+                try {
+                doSomething();
+                } catch (error) {
+                throw new Error("Failed", { cause: error });
+                }
+            `,
         },
         // 7. Throws a new Error, cause property is present but value is a literal
         {
@@ -162,6 +207,13 @@ ruleTester.run("no-swallowed-error-cause", noSwallowedErrorCause, {
                 }
             `,
             errors: [{ messageId: "missing-cause" }],
+            output: `
+                try {
+                doSomething();
+                } catch (error) {
+                throw new Error("Failed", { cause: error });
+                }
+            `,
         },
         // 8. Throws a new Error, cause property is present but value is a function call
         {
@@ -173,6 +225,13 @@ ruleTester.run("no-swallowed-error-cause", noSwallowedErrorCause, {
                 }
             `,
             errors: [{ messageId: "missing-cause" }],
+            output: `
+                try {
+                doSomething();
+                } catch (error) {
+                throw new Error("Failed", { cause: error });
+                }
+            `,
         },
         // 9. throw in a heavily nested catch block
         {
@@ -190,6 +249,19 @@ ruleTester.run("no-swallowed-error-cause", noSwallowedErrorCause, {
               }
             `,
             errors: [{ messageId: "missing-cause" }],
+            output: `
+              try {
+                doSomething();
+              } catch (error) {
+                if (shouldThrow) {
+                  while (true) {
+                    if (Math.random() > 0.5) {
+                      throw new Error("Failed without cause", { cause: error });
+                    }
+                  }
+                }
+              }
+            `,
         },
         // 10. construct with a `switch` statement
         {
@@ -208,6 +280,20 @@ ruleTester.run("no-swallowed-error-cause", noSwallowedErrorCause, {
               }
             `,
             errors: [{ messageId: "missing-cause" }],
+            output: `
+              try {
+                doSomething();
+              } catch (error) {
+                switch (error.code) {
+                  case "A":
+                    throw new Error("Type A", { cause: error });
+                  case "B":
+                    throw new Error("Type B", { cause: error });
+                  default:
+                    throw new Error("Other", { cause: error });
+                }
+              }
+            `,
         },
     ],
 });
