@@ -6,8 +6,7 @@
     "scripts": {
         "test": "vitest --run",
         "lint": "eslint .",
-        "build": "tsc --build tsconfig.build.json",
-        "publish": "npm publish --access public"
+        "build": "tsc --build tsconfig.build.json"
     },
     "files": [
         "dist"
