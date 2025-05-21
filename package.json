@@ -10,7 +10,7 @@
         "lint:docs": "markdownlint \"**/*.md\"",
         "lint:eslint-docs": "npm run update:eslint-docs -- --check",
         "lint:js": "eslint .",
-        "update:eslint-docs": "eslint-doc-generator --init-rule-docs"
+        "update:eslint-docs": "eslint-doc-generator"
     },
     "files": [
         "dist",

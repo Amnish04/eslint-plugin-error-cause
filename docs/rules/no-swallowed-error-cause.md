@@ -1,4 +1,6 @@
-# Disallow losing original error `cause` when re-throwing custom errors (`error-cause/no-swallowed-error-cause`)
+# Disallow losing original error `cause` when rethrowing custom errors (`error-cause/no-swallowed-error-cause`)
+
+🔧 This rule is automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/latest/user-guide/command-line-interface#--fix).
 
 <!-- end auto-generated rule header -->
 
