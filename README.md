@@ -82,9 +82,9 @@ export default defineConfig([
 
 <!-- begin auto-generated rules list -->
 
-| Name                                                              | Description                                                           |
-| :---------------------------------------------------------------- | :-------------------------------------------------------------------- |
-| [no-swallowed-error-cause](src/rules/no-swallowed-error-cause.ts) | disallow losing original error `cause` when rethrowing custom errors. |
+| Name                                                                                                                                | Description                                                           |
+| :---------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------- |
+| [no-swallowed-error-cause](https://github.com/Amnish04/eslint-plugin-error-cause/blob/master/src/rules/no-swallowed-error-cause.ts) | disallow losing original error `cause` when rethrowing custom errors. |
 
 <!-- end auto-generated rules list -->
 
