@@ -1,12 +1,16 @@
 {
     "name": "eslint-plugin-error-cause",
-    "version": "0.0.1",
+    "version": "0.0.5",
     "description": "ESLint rules to detect swallowed error causes when rethrowing exceptions.",
-    "main": "index.js",
+    "main": "dist/index.js",
     "scripts": {
         "test": "vitest --run",
-        "lint": "eslint ."
+        "lint": "eslint .",
+        "build": "tsc --build tsconfig.build.json"
     },
+    "files": [
+        "dist"
+    ],
     "keywords": [
         "eslint",
         "eslintplugin",
