@@ -5,7 +5,7 @@ interface MyPluginDocs {
 }
 
 const createRule = ESLintUtils.RuleCreator<MyPluginDocs>(
-    () => "https://github.com/Amnish04/eslint-plugin-error-context"
+    () => "https://www.npmjs.com/package/eslint-plugin-error-cause"
 );
 
 // https://typescript-eslint.io/developers/custom-rules#rulecreator
