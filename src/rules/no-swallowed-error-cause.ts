@@ -40,6 +40,15 @@ export const noSwallowedErrorCause = createRule<Options, MessageIds>({
                         context.report({
                             messageId: "missing-cause",
                             node: customThrow,
+                            fix: (fixer) => {
+                                const errorMessage =
+                                    extractErrorMessageFromThrowStatemt(customThrow);
+
+                                return fixer.replaceText(
+                                    customThrow,
+                                    `throw new Error("${errorMessage}", { cause: ${rootError.name} });`
+                                );
+                            },
                         });
                         return;
                     }
@@ -55,6 +64,12 @@ export const noSwallowedErrorCause = createRule<Options, MessageIds>({
                         context.report({
                             messageId: "missing-cause",
                             node: customThrowCause,
+                            fix: (fixer) => {
+                                return fixer.replaceText(
+                                    customThrowCause,
+                                    rootError.name
+                                );
+                            },
                         });
                     }
                 }
@@ -71,6 +86,7 @@ export const noSwallowedErrorCause = createRule<Options, MessageIds>({
         messages,
         type: "suggestion",
         schema: [],
+        fixable: "code",
     },
     defaultOptions: [],
 });
@@ -158,4 +174,13 @@ function findThrowNewErrorCause(throwStatement: ThrowNewErrorStatement) {
             : undefined;
 
     return causeProperty?.value;
+}
+
+function extractErrorMessageFromThrowStatemt(statement: ThrowNewErrorStatement) {
+    const newExpression = statement.argument;
+    const messageArgument = newExpression.arguments[0];
+
+    return messageArgument?.type === TSESTree.AST_NODE_TYPES.Literal
+        ? messageArgument.value
+        : undefined;
 }
