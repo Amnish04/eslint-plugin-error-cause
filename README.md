@@ -4,7 +4,18 @@
 
 An ESLint plugin with rules to report loss of original [error cause](https://nodejs.org/api/errors.html#errorcaus), when rethrowing errors.
 
-## Context
+![code-art](https://github.com/user-attachments/assets/d4a68b8d-897b-4df9-a605-f24850d5759d)
+
+
+## Table of Contents
+
+- [Background](#background)
+- [Installation](#installation)
+- [Configuration](#configuration-eslint-v8230-flat-config)
+- [License](#license)
+
+
+## Background
 
 From [MDN docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/cause)
 
