@@ -6,14 +6,12 @@ An ESLint plugin with rules to report loss of original [error cause](https://nod
 
 ![code-art](https://github.com/user-attachments/assets/d4a68b8d-897b-4df9-a605-f24850d5759d)
 
-
 ## Table of Contents
 
-- [Background](#background)
-- [Installation](#installation)
-- [Configuration](#configuration-eslint-v8230-flat-config)
-- [License](#license)
-
+-   [Background](#background)
+-   [Installation](#installation)
+-   [Configuration](#configuration-eslint-v8230-flat-config)
+-   [License](#license)
 
 ## Background
 
@@ -95,9 +93,9 @@ export default defineConfig([
 
 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).
 
-| Name                                                               | Description                                                           | 🔧 |
-| :----------------------------------------------------------------- | :-------------------------------------------------------------------- | :- |
-| [no-swallowed-error-cause](docs/rules/no-swallowed-error-cause.md) | disallow losing original error `cause` when rethrowing custom errors. | 🔧 |
+| Name                                                               | Description                                                           | 🔧  |
+| :----------------------------------------------------------------- | :-------------------------------------------------------------------- | :-- |
+| [no-swallowed-error-cause](docs/rules/no-swallowed-error-cause.md) | disallow losing original error `cause` when rethrowing custom errors. | 🔧  |
 
 <!-- end auto-generated rules list -->
 

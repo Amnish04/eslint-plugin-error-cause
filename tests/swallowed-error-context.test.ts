@@ -295,5 +295,43 @@ ruleTester.run("no-swallowed-error-cause", noSwallowedErrorCause, {
               }
             `,
         },
+        // Throw statement with a template literal error message
+        {
+            code: `
+                try {
+                    doSomething();
+                } catch (error) {
+                    throw new Error(\`The certificate key "\${chalk.yellow(keyFile)}" is invalid.\n\${err.message}\`);
+                }
+            `,
+            errors: [{ messageId: "missing-cause" }],
+            output: `
+                try {
+                    doSomething();
+                } catch (error) {
+                    throw new Error(\`The certificate key "\${chalk.yellow(keyFile)}" is invalid.\n\${err.message}\`, { cause: error });
+                }
+            `,
+        },
+        // Throw statement with a variable error message
+        {
+            code: `
+                try {
+                    doSomething();
+                } catch (error) {
+                    const errorMessage = "Operation failed";
+                    throw new Error(errorMessage);
+                }
+            `,
+            errors: [{ messageId: "missing-cause" }],
+            output: `
+                try {
+                    doSomething();
+                } catch (error) {
+                    const errorMessage = "Operation failed";
+                    throw new Error(errorMessage, { cause: error });
+                }
+            `,
+        },
     ],
 });

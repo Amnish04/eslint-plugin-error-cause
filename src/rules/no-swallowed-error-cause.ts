@@ -41,12 +41,14 @@ export const noSwallowedErrorCause = createRule<Options, MessageIds>({
                             messageId: "missing-cause",
                             node: customThrow,
                             fix: (fixer) => {
+                                const newExpression = customThrow.argument;
+                                const messageArgument = newExpression.arguments[0];
                                 const errorMessage =
-                                    extractErrorMessageFromThrowStatemt(customThrow);
+                                    context.sourceCode.getText(messageArgument);
 
                                 return fixer.replaceText(
                                     customThrow,
-                                    `throw new Error("${errorMessage}", { cause: ${rootError.name} });`
+                                    `throw new Error(${errorMessage}, { cause: ${rootError.name} });`
                                 );
                             },
                         });
@@ -174,13 +176,4 @@ function findThrowNewErrorCause(throwStatement: ThrowNewErrorStatement) {
             : undefined;
 
     return causeProperty?.value;
-}
-
-function extractErrorMessageFromThrowStatemt(statement: ThrowNewErrorStatement) {
-    const newExpression = statement.argument;
-    const messageArgument = newExpression.arguments[0];
-
-    return messageArgument?.type === TSESTree.AST_NODE_TYPES.Literal
-        ? messageArgument.value
-        : undefined;
 }
