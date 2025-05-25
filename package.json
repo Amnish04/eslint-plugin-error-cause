@@ -1,14 +1,14 @@
 {
     "name": "eslint-plugin-error-cause",
-    "version": "1.1.5",
+    "version": "1.2.0",
     "description": "ESLint rules to detect swallowed error causes when rethrowing exceptions.",
     "main": "dist/index.js",
     "scripts": {
         "test": "vitest --run",
         "build": "tsc --build tsconfig.build.json",
-        "lint": "npm-run-all \"lint:*\"",
-        "lint:docs": "markdownlint \"**/*.md\"",
-        "lint:eslint-docs": "npm run update:eslint-docs -- --check",
+        "lint": "pnpm run \"/^lint:.*/\"",
+        "lint:docs": "markdownlint --config .markdownlintrc.json \"**/*.md\"",
+        "lint:eslint-docs": "eslint-doc-generator --check",
         "lint:js": "eslint .",
         "update:eslint-docs": "eslint-doc-generator"
     },
@@ -43,6 +43,7 @@
         "eslint-plugin-eslint-plugin": "^6.4.0",
         "eslint-plugin-n": "^17.17.0",
         "globals": "^16.1.0",
+        "markdownlint-cli": "^0.45.0",
         "typescript": "^5.8.3",
         "typescript-eslint": "^8.32.0",
         "vitest": "^3.1.3"

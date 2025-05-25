@@ -2,7 +2,7 @@
 
 [![NPM Version](https://img.shields.io/npm/v/eslint-plugin-error-cause?color=dark)](https://www.npmjs.com/package/eslint-plugin-error-cause) ![NPM Downloads](https://img.shields.io/npm/dw/eslint-plugin-error-cause?color=green) ![GitHub License](https://img.shields.io/github/license/Amnish04/eslint-plugin-error-cause)
 
-An ESLint plugin with rules to report loss of original [error cause](https://nodejs.org/api/errors.html#errorcaus), when rethrowing errors.
+An ESLint plugin with rules to report loss of original [error cause](https://nodejs.org/api/errors.html#error_cause), when re-throwing errors.
 
 ![code-art](https://github.com/user-attachments/assets/d4a68b8d-897b-4df9-a605-f24850d5759d)
 
@@ -11,7 +11,6 @@ An ESLint plugin with rules to report loss of original [error cause](https://nod
 -   [Background](#background)
 -   [Installation](#installation)
 -   [Configuration](#configuration-eslint-v8230-flat-config)
--   [List of supported rules](#list-of-supported-rules)
 -   [License](#license)
 
 ## Background
@@ -45,7 +44,7 @@ catch(error) {
 
 Install `eslint` and this plugin as dev dependencies.
 
-```
+```bash
 pnpm add -D eslint eslint-plugin-error-cause
 ```
 
@@ -57,7 +56,7 @@ And from `v8.23.0`, eslint CLI starts to look up `eslint.config.js`. This plugin
 
 You could **either** use the preset `recommended` config exported from this project or enable the rule manually.
 
-#### Recommended
+### Recommended
 
 This enables `no-swallowed-error-cause` rule with a `warn` severity level.
 
@@ -68,7 +67,7 @@ import { defineConfig } from "eslint/config";
 export default defineConfig([errorCause.configs.recommended]);
 ```
 
-#### Manual Config
+### Manual Config
 
 This is particularly useful if you want to set a different severity level than `warn`.
 
@@ -94,9 +93,9 @@ export default defineConfig([
 
 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).
 
-| Name                                                               | Description                                                           | 🔧  |
-| :----------------------------------------------------------------- | :-------------------------------------------------------------------- | :-- |
-| [no-swallowed-error-cause](docs/rules/no-swallowed-error-cause.md) | disallow losing original error `cause` when rethrowing custom errors. | 🔧  |
+| Name                                                               | Description                                                           | 🔧 |
+| :----------------------------------------------------------------- | :-------------------------------------------------------------------- | :- |
+| [no-swallowed-error-cause](docs/rules/no-swallowed-error-cause.md) | disallow losing original error `cause` when rethrowing custom errors. | 🔧 |
 
 <!-- end auto-generated rules list -->
 
