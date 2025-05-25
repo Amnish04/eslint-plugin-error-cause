@@ -1,27 +1,7 @@
 import { noSwallowedErrorCause } from "../src/rules/no-swallowed-error-cause";
-import { RuleTester } from "@typescript-eslint/rule-tester";
-import parser from "@typescript-eslint/parser";
-import * as vitest from "vitest";
+import { getRuleTester } from "./rule-tester";
 
-// https://github.com/typescript-eslint/typescript-eslint/issues/7275#issuecomment-1643242066
-RuleTester.afterAll = vitest.afterAll;
-RuleTester.it = vitest.it;
-RuleTester.itOnly = vitest.it.only;
-RuleTester.describe = vitest.describe;
-
-// https://typescript-eslint.io/developers/custom-rules/#testing-typed-rules
-const ruleTester = new RuleTester({
-    languageOptions: {
-        parser,
-        parserOptions: {
-            projectService: {
-                allowDefaultProject: ["*.ts*"],
-            },
-            tsconfigRootDir: __dirname,
-            ecmaVersion: 2024,
-        },
-    },
-});
+const ruleTester = getRuleTester();
 
 ruleTester.run("no-swallowed-error-cause", noSwallowedErrorCause, {
     valid: [
