@@ -15,7 +15,7 @@ Thank you for considering contributing to `eslint-plugin-error-cause`! This docu
 
 ## Prerequisites
 
-To get started with contributing to ChatCraft.org, please make sure you have the following:
+To get started with contributing, please make sure you have the following:
 
 - [pnpm](https://pnpm.io) package manager installed globally
 - [Node.js](https://nodejs.org) installed (via pnpm) on your machine
