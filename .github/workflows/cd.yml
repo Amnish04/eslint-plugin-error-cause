@@ -9,9 +9,6 @@ on:
     push:
         branches:
             - main
-    pull_request:
-        branches:
-            - main
 
 jobs:
     check_changes:
@@ -33,6 +30,7 @@ jobs:
               id: version_check
               uses: EndBug/version-check@v2
               with:
+                  # This will check the version changes in commit diffs vs just commit messages
                   diff-search: true
 
             - name: Log when changed
@@ -51,7 +49,7 @@ jobs:
             id-token: write
         timeout-minutes: 5
         needs: check_changes
-        if: ${{ 'false' == 'true' }}
+        if: ${{ needs.check_changes.outputs.version_bumped == 'true' }}
 
         steps:
             # https://github.com/actions/checkout
