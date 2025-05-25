@@ -93,9 +93,9 @@ export default defineConfig([
 
 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).
 
-| Name                                                               | Description                                                           | 🔧  |
-| :----------------------------------------------------------------- | :-------------------------------------------------------------------- | :-- |
-| [no-swallowed-error-cause](docs/rules/no-swallowed-error-cause.md) | disallow losing original error `cause` when rethrowing custom errors. | 🔧  |
+| Name                                                               | Description                                                           | 🔧 |
+| :----------------------------------------------------------------- | :-------------------------------------------------------------------- | :- |
+| [no-swallowed-error-cause](docs/rules/no-swallowed-error-cause.md) | disallow losing original error `cause` when rethrowing custom errors. | 🔧 |
 
 <!-- end auto-generated rules list -->
 

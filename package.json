@@ -6,7 +6,7 @@
     "scripts": {
         "test": "vitest --run",
         "build": "tsc --build tsconfig.build.json",
-        "lint": "pnpm run \"/^lint:.*/",
+        "lint": "pnpm run \"/^lint:.*/\"",
         "lint:docs": "markdownlint --config .markdownlintrc.json \"**/*.md\"",
         "lint:eslint-docs": "eslint-doc-generator --check",
         "lint:js": "eslint .",

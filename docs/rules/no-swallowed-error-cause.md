@@ -8,6 +8,10 @@
 
 <!-- end auto-generated rule header -->
 
+🔧 This rule is automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/latest/user-guide/command-line-interface#--fix).
+
+<!-- end auto-generated rule header -->
+
 This rule reports an error of configured severity level, for any instances in code where re-throwing custom specific errors leads to loss of original error context.
 
 **Incorrect:**
