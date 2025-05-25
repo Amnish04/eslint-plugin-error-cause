@@ -99,6 +99,14 @@ export default defineConfig([
 
 <!-- end auto-generated rules list -->
 
+## Contributing
+
+Got an idea for a new rule, or found a bug that needs to be fixed?
+
+Its time to [file an issue](https://github.com/Amnish04/eslint-plugin-error-cause/issues)!
+
+Make sure to read [CONTRIBUTING.md](https://github.com/Amnish04/eslint-plugin-error-cause/blob/amnish04/contrubuting.md/CONTRIBUTING.md) for more details.
+
 ## License
 
 `eslint-plugin-error-cause` is licensed under the [MIT License](https://opensource.org/license/mit).
