@@ -31,7 +31,7 @@ jobs:
             # https://github.com/marketplace/actions/version-check
             - name: Check if version has been updated
               id: version_check
-              uses: EndBug/version-check@v2
+              uses: EndBug/version-check@v1
 
             - name: Log when changed
               if: steps.version_check.outputs.changed == 'true'
