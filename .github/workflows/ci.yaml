@@ -13,9 +13,7 @@ on:
 
 jobs:
     lint:
-        # Give your job a name that will show up in the GitHub Actions web UI
-        name: Lint
-        # We'll run this on a Linux (Ubuntu) VM, since we'll deploy on Linux too.
+        name: Build and Lint
         runs-on: ubuntu-latest
         steps:
             # https://github.com/actions/checkout
@@ -37,12 +35,16 @@ jobs:
             - name: Install dependencies
               run: pnpm install
 
+            - name: Build artifacts
+              run: pnpm build
+
             - name: Lint
               run: pnpm lint
 
     unit-tests:
         name: Unit Tests
         runs-on: ubuntu-latest
+        needs: lint
         steps:
             - name: Check out code
               uses: actions/checkout@v3
@@ -62,28 +64,3 @@ jobs:
             - name: Install node dependencies and run Tests
               #  https://pnpm.io/cli/install-test
               run: pnpm install-test
-
-    build:
-        name: Build
-        runs-on: ubuntu-latest
-        steps:
-            - name: Check out code
-              uses: actions/checkout@v3
-
-            - name: Install pnpm
-              uses: pnpm/action-setup@v4
-              with:
-                  version: 10
-                  run_install: false
-
-            - name: Install Node.js
-              uses: actions/setup-node@v4
-              with:
-                  node-version: 20
-                  cache: "pnpm"
-
-            - name: Install dependencies
-              run: pnpm install
-
-            - name: Build artifacts
-              run: pnpm build
