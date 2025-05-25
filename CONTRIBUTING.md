@@ -6,7 +6,7 @@ Thank you for considering contributing to `eslint-plugin-error-cause`! This docu
 
 - [Contributing to eslint-plugin-error-cause](#contributing-to-eslint-plugin-error-cause)
   - [Table of Contents](#table-of-contents)
-  - [Prerequisites](#preqrequisites)
+  - [Prerequisites](#prerequisites)
   - [Development Setup](#development-setup)
   - [Submitting Changes](#submitting-changes)
   - [Testing](#testing)
