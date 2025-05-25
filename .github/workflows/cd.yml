@@ -20,18 +20,23 @@ jobs:
             pull-requests: read
 
         outputs:
-            version_bumped: ${{ steps.filter.outputs.version_bumped }}
+            version_bumped: ${{ steps.version_check.outputs.changed }}
 
         steps:
             - uses: actions/checkout@v4
 
-            - name: Check for changes in specific paths
-              id: filter
-              uses: dorny/paths-filter@v3.0.2
-              with:
-                  filters: |
-                      version_bumped:
-                      - 'package.json'
+            # https://github.com/marketplace/actions/version-check
+            - name: Check if version has been updated
+              id: version_check
+              uses: EndBug/version-check@v2
+
+            - name: Log when changed
+              if: steps.version_check.outputs.changed == 'true'
+              run: 'echo "Version change found in commit ${{ steps.version_check.outputs.commit }}! New version: ${{ steps.version_check.outputs.version }} (${{ steps.version_check.outputs.type }})"'
+
+            - name: Log when unchanged
+              if: steps.version_check.outputs.changed == 'false'
+              run: 'echo "No version change :/ Skipping npm publish."'
 
     publish:
         name: Publish to NPM
