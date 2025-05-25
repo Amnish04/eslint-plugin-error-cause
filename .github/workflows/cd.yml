@@ -1,0 +1,73 @@
+# .github/workflows/cd.yml
+
+# Continuous Deployment (CD) Workflow
+name: CD
+env:
+    NPM_REGISTRY: "https://registry.npmjs.org"
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    check_changes:
+        runs-on: ubuntu-latest
+        timeout-minutes: 5
+
+        permissions:
+            contents: read
+            pull-requests: read
+
+        outputs:
+            version_bumped: ${{ steps.filter.outputs.version_bumped }}
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Check for changes in specific paths
+              id: filter
+              uses: dorny/paths-filter@v3.0.2
+              with:
+                  filters: |
+                      version_bumped:
+                      - '/**'
+
+    publish:
+        name: Publish to NPM
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            id-token: write
+        timeout-minutes: 5
+        needs: check_changes
+        if: ${{ needs.check_changes.outputs.version_bumped == 'true' }}
+
+        steps:
+            # https://github.com/actions/checkout
+            - name: Check out code
+              uses: actions/checkout@v3
+
+            - name: Install pnpm
+              uses: pnpm/action-setup@v4
+              with:
+                  version: 10
+                  run_install: false
+
+            - name: Install Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+                  cache: "pnpm"
+                  registry-url: ${{ env.NPM_REGISTRY }}
+
+            - name: Install dependencies
+              run: pnpm install
+
+            - name: Build artifacts
+              run: pnpm build
+
+            - name: Publish to NPM
+              run: npm publish --provenance --access public
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
