@@ -2,7 +2,7 @@
 
 [![NPM Version](https://img.shields.io/npm/v/eslint-plugin-error-cause?color=dark)](https://www.npmjs.com/package/eslint-plugin-error-cause) ![NPM Downloads](https://img.shields.io/npm/dw/eslint-plugin-error-cause?color=green) ![GitHub License](https://img.shields.io/github/license/Amnish04/eslint-plugin-error-cause)
 
-An ESLint plugin with rules to report loss of original [error cause](https://nodejs.org/api/errors.html#errorcaus), when re-throwing errors.
+An ESLint plugin with rules to report loss of original [error cause](https://nodejs.org/api/errors.html#error_cause), when re-throwing errors.
 
 ![code-art](https://github.com/user-attachments/assets/d4a68b8d-897b-4df9-a605-f24850d5759d)
 
