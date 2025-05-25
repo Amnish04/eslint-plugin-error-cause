@@ -6,14 +6,18 @@ env:
     NPM_REGISTRY: "https://registry.npmjs.org"
 
 on:
-    push:
-        branches:
-            - main
+    workflow_run:
+        workflows: ["CI"]
+        types: [completed]
 
 jobs:
     check_changes:
         runs-on: ubuntu-latest
         timeout-minutes: 5
+        # Only execute CD, if CI passes on `main` branch
+        if: >
+            ${{ github.event.workflow_run.conclusion == 'success' &&
+                github.event.workflow_run.head_branch == 'main' }}
 
         permissions:
             contents: read
@@ -49,7 +53,8 @@ jobs:
             id-token: write
         timeout-minutes: 5
         needs: check_changes
-        if: ${{ needs.check_changes.outputs.version_bumped == 'true' }}
+        # Only publish to `npm` if a version bump is detected
+        if: ${{ needs.check_changes.outputs.version_bumped == 'true'  }}
 
         steps:
             # https://github.com/actions/checkout
