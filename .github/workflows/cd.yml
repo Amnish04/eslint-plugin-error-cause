@@ -36,7 +36,7 @@ jobs:
 
             - name: Log when unchanged
               if: steps.version_check.outputs.changed == 'false'
-              run: 'echo "No version change :/"'
+              run: 'echo "No version change :/ Skipping npm publish."'
 
     publish:
         name: Publish to NPM
