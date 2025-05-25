@@ -29,6 +29,9 @@ jobs:
             - name: Check if version has been updated
               id: version_check
               uses: EndBug/version-check@v2
+              with:
+                  # This will check the version changes in commit diffs vs just commit messages
+                  diff-search: true
 
             - name: Log when changed
               if: steps.version_check.outputs.changed == 'true'
