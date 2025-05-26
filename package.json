@@ -32,7 +32,7 @@
         "plugin"
     ],
     "author": "Amnish Singh Arora",
-    "license": "ISC",
+    "license": "MIT",
     "devDependencies": {
         "@eslint/js": "^9.26.0",
         "@types/node": "^22.15.3",
