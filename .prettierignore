@@ -27,4 +27,5 @@ yarn.lock
 .vscode
 .idea
 
-# If you have any other files or directories that shouldn't be formatted, you can add them here
+# Ignore markdown files
+*.md
