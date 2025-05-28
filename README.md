@@ -11,6 +11,8 @@ An ESLint plugin with rules to report loss of original [error cause](https://nod
 -   [Background](#background)
 -   [Installation](#installation)
 -   [Configuration](#configuration-eslint-v8230-flat-config)
+-   [List of supported rules](#list-of-supported-rules)
+-   [Contributing](#contributing)
 -   [License](#license)
 
 ## Background
