@@ -82,7 +82,7 @@ export const noSwallowedErrorCause = createRule<Options, MessageIds>({
     meta: {
         docs: {
             description:
-                "disallow losing original error `cause` when rethrowing custom errors.",
+                "disallow losing original error `cause` when re-throwing custom errors.",
             recommended: true,
         },
         messages,

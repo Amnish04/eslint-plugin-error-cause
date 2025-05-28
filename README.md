@@ -112,8 +112,8 @@ Make sure to read [CONTRIBUTING.md](https://github.com/Amnish04/eslint-plugin-er
 
 ## References
 
-- [typescript-eslint playground](https://typescript-eslint.io/play/#ts=5.8.2&fileType=.tsx&code=LAKCA&eslintrc=N4KABGBEBOCuA2BTAzpAXGYBfEWg&tsconfig=N4KABGBEDGD2C2AHAlgGwKYCcDyiAuysAdgM6QBcYoEEkJemy0eAcgK6qoDCAFutAGsylBm3TgwAXxCSgA&tokens=false) helps visualize JS and TS ASTs and aid development when writing rules.
-- [eslint-plugin-exception-handling](https://github.com/Akronae/eslint-plugin-exception-handling) is a wider scoped exception handling plugin.
+-   [typescript-eslint playground](https://typescript-eslint.io/play/#ts=5.8.2&fileType=.tsx&code=LAKCA&eslintrc=N4KABGBEBOCuA2BTAzpAXGYBfEWg&tsconfig=N4KABGBEDGD2C2AHAlgGwKYCcDyiAuysAdgM6QBcYoEEkJemy0eAcgK6qoDCAFutAGsylBm3TgwAXxCSgA&tokens=false) helps visualize JS and TS ASTs and aid development when writing rules.
+-   [eslint-plugin-exception-handling](https://github.com/Akronae/eslint-plugin-exception-handling) is a wider scoped exception handling plugin.
 
 ## License
 
