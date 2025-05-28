@@ -3,11 +3,5 @@
     "MD007": { "indent": 4 },
     "MD013": {
         "line_length": 500
-    },
-    "MD030": {
-        "ol_multi": 1,
-        "ol_single": 1,
-        "ul_multi": 3,
-        "ul_single": 3
     }
 }
