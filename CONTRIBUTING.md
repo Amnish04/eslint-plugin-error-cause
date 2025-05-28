@@ -4,21 +4,21 @@ Thank you for considering contributing to `eslint-plugin-error-cause`! This docu
 
 ## Table of Contents
 
--   [Contributing to eslint-plugin-error-cause](#contributing-to-eslint-plugin-error-cause)
-    -   [Table of Contents](#table-of-contents)
-    -   [Prerequisites](#prerequisites)
-    -   [Development Setup](#development-setup)
-    -   [Submitting Changes](#submitting-changes)
-    -   [Testing](#testing)
-    -   [Issue and Pull Request Guidelines](#issue-and-pull-request-guidelines)
-    -   [License](#license)
+- [Contributing to eslint-plugin-error-cause](#contributing-to-eslint-plugin-error-cause)
+    - [Table of Contents](#table-of-contents)
+    - [Prerequisites](#prerequisites)
+    - [Development Setup](#development-setup)
+    - [Submitting Changes](#submitting-changes)
+    - [Testing](#testing)
+    - [Issue and Pull Request Guidelines](#issue-and-pull-request-guidelines)
+    - [License](#license)
 
 ## Prerequisites
 
 To get started with contributing, please make sure you have the following:
 
--   [pnpm](https://pnpm.io) package manager installed globally
--   [Node.js](https://nodejs.org) installed (via pnpm) on your machine
+- [pnpm](https://pnpm.io) package manager installed globally
+- [Node.js](https://nodejs.org) installed (via pnpm) on your machine
 
 ## Development Setup
 

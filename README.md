@@ -8,13 +8,13 @@ An ESLint plugin with rules to report loss of original [error cause](https://nod
 
 ## Table of Contents
 
--   [Background](#background)
--   [Installation](#installation)
--   [Configuration](#configuration-eslint-v8230-flat-config)
--   [List of supported rules](#list-of-supported-rules)
--   [Contributing](#contributing)
--   [References](#references)
--   [License](#license)
+- [Background](#background)
+- [Installation](#installation)
+- [Configuration](#configuration-eslint-v8230-flat-config)
+- [List of supported rules](#list-of-supported-rules)
+- [Contributing](#contributing)
+- [References](#references)
+- [License](#license)
 
 ## Background
 
@@ -96,9 +96,9 @@ export default defineConfig([
 
 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).
 
-| Name                                                               | Description                                                            | 🔧  |
-| :----------------------------------------------------------------- | :--------------------------------------------------------------------- | :-- |
-| [no-swallowed-error-cause](docs/rules/no-swallowed-error-cause.md) | disallow losing original error `cause` when re-throwing custom errors. | 🔧  |
+| Name                                                               | Description                                                           | 🔧 |
+| :----------------------------------------------------------------- | :-------------------------------------------------------------------- | :- |
+| [no-swallowed-error-cause](docs/rules/no-swallowed-error-cause.md) | disallow losing original error `cause` when re-throwing custom errors. | 🔧 |
 
 <!-- end auto-generated rules list -->
 
@@ -112,8 +112,8 @@ Make sure to read [CONTRIBUTING.md](https://github.com/Amnish04/eslint-plugin-er
 
 ## References
 
--   [typescript-eslint playground](https://typescript-eslint.io/play/#ts=5.8.2&fileType=.tsx&code=LAKCA&eslintrc=N4KABGBEBOCuA2BTAzpAXGYBfEWg&tsconfig=N4KABGBEDGD2C2AHAlgGwKYCcDyiAuysAdgM6QBcYoEEkJemy0eAcgK6qoDCAFutAGsylBm3TgwAXxCSgA&tokens=false) helps visualize JS and TS ASTs and aid development when writing rules.
--   [eslint-plugin-exception-handling](https://github.com/Akronae/eslint-plugin-exception-handling) is a wider scoped exception handling plugin.
+- [typescript-eslint playground](https://typescript-eslint.io/play/#ts=5.8.2&fileType=.tsx&code=LAKCA&eslintrc=N4KABGBEBOCuA2BTAzpAXGYBfEWg&tsconfig=N4KABGBEDGD2C2AHAlgGwKYCcDyiAuysAdgM6QBcYoEEkJemy0eAcgK6qoDCAFutAGsylBm3TgwAXxCSgA&tokens=false) helps visualize JS and TS ASTs and aid development when writing rules.
+- [eslint-plugin-exception-handling](https://github.com/Akronae/eslint-plugin-exception-handling) is a wider scoped exception handling plugin.
 
 ## License
 
