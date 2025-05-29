@@ -1,10 +1,27 @@
-# eslint-plugin-error-cause
+<h1 align="center">eslint-plugin-error-cause</h1>
 
-[![NPM Version](https://img.shields.io/npm/v/eslint-plugin-error-cause?color=dark)](https://www.npmjs.com/package/eslint-plugin-error-cause) ![NPM Downloads](https://img.shields.io/npm/dw/eslint-plugin-error-cause?color=green) ![GitHub License](https://img.shields.io/github/license/Amnish04/eslint-plugin-error-cause)
+<div align="center">
+    <a href="https://www.npmjs.com/package/eslint-plugin-error-cause">
+        <img src="https://img.shields.io/npm/v/eslint-plugin-error-cause?color=dark" alt="NPM Version">
+    </a>
+    <a href="https://github.com/Amnish04/eslint-plugin-error-cause/actions">
+        <img src="https://img.shields.io/github/actions/workflow/status/Amnish04/eslint-plugin-error-cause/ci.yml" alt="GitHub Actions Workflow Status">
+    </a>
+    <a href="https://www.npmjs.com/package/eslint-plugin-error-cause">
+        <img src="https://img.shields.io/npm/dw/eslint-plugin-error-cause?color=blue" alt="NPM Downloads">
+    </a>
+    <a href="https://github.com/Amnish04/eslint-plugin-error-cause/blob/main/LICENSE">
+        <img src="https://img.shields.io/github/license/Amnish04/eslint-plugin-error-cause?color=red" alt="GitHub License">
+    </a>
+</div>
 
-An ESLint plugin with rules to report loss of original [error cause](https://nodejs.org/api/errors.html#error_cause), when re-throwing errors.
+<p align="center">
+    An ESLint plugin with rules to report loss of original <a href="https://nodejs.org/api/errors.html#error_cause">error cause</a>, when re-throwing errors.
+</p>
 
 ![code-art](https://github.com/user-attachments/assets/d4a68b8d-897b-4df9-a605-f24850d5759d)
+
+<hr/>
 
 ## Table of Contents
 
