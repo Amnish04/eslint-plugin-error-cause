@@ -15,6 +15,7 @@
     "files": [
         "dist"
     ],
+    "types": "dist/index.d.ts",
     "repository": {
         "type": "git",
         "url": "https://github.com/Amnish04/eslint-plugin-error-cause"
