@@ -1,6 +1,6 @@
 import { ESLintUtils, TSESTree } from "@typescript-eslint/utils";
 
-interface MyPluginDocs {
+export interface MyPluginDocs {
     recommended: boolean;
 }
 

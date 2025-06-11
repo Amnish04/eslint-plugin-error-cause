@@ -10,7 +10,7 @@ const plugin = {
     processors: {},
 };
 
-Object.assign(plugin.configs, {
+const configs = {
     recommended: [
         {
             plugins: {
@@ -21,6 +21,12 @@ Object.assign(plugin.configs, {
             },
         },
     ],
-});
+};
 
-module.exports = plugin;
+type ErrorCausePlugin = Omit<typeof plugin, "configs"> & {
+    configs: typeof configs;
+};
+
+Object.assign(plugin.configs, configs);
+
+export default plugin as ErrorCausePlugin;
