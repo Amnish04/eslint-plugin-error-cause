@@ -5,7 +5,7 @@
     "main": "dist/index.js",
     "scripts": {
         "test": "vitest --run",
-        "build": "tsc --build tsconfig.build.json",
+        "build": "tsc --build tsconfig.build.json && node scripts/cjs-fix.js",
         "lint": "pnpm run \"/^lint:.*/\"",
         "lint:docs": "markdownlint --config .markdownlintrc.json \"**/*.md\"",
         "lint:eslint-docs": "eslint-doc-generator --check",
