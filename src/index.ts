@@ -23,10 +23,10 @@ const configs = {
     ],
 };
 
-type ErrorConfigPlugin = Omit<typeof plugin, "configs"> & {
+type ErrorCausePlugin = Omit<typeof plugin, "configs"> & {
     configs: typeof configs;
 };
 
 Object.assign(plugin.configs, configs);
 
-export default plugin as ErrorConfigPlugin;
+export default plugin as ErrorCausePlugin;
