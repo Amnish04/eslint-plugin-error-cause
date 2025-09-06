@@ -1,6 +1,6 @@
 # Rule has migrated 🎉
 
-This rule has been added to [`eslint`](https://github.com/eslint/eslint) project, and the docs can be found [here](https://eslint.org/docs/latest/rules/preserve-caught-error).
+This rule has been added to [`eslint`](https://github.com/eslint/eslint) project, and the docs can be [found here](https://eslint.org/docs/latest/rules/preserve-caught-error).
 This repo is no longer maintained and is archived.
 
 ## eslint-plugin-error-cause
