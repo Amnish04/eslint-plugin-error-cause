@@ -1,7 +1,11 @@
-<h1 align="center">eslint-plugin-error-cause</h1>
+# Rule has migrated 🎉
 
-<div align="center">
-    <a href="https://www.npmjs.com/package/eslint-plugin-error-cause">
+This rule has been added to [`eslint`](https://github.com/eslint/eslint) project, and the docs can be found [here](https://eslint.org/docs/latest/rules/preserve-caught-error).
+This repo is no longer maintained and is archived.
+
+# eslint-plugin-error-cause
+
+<a href="https://www.npmjs.com/package/eslint-plugin-error-cause">
         <img src="https://img.shields.io/npm/v/eslint-plugin-error-cause?color=dark" alt="NPM Version">
     </a>
     <a href="https://github.com/Amnish04/eslint-plugin-error-cause/actions">
@@ -13,11 +17,8 @@
     <a href="https://github.com/Amnish04/eslint-plugin-error-cause/blob/main/LICENSE">
         <img src="https://img.shields.io/github/license/Amnish04/eslint-plugin-error-cause?color=red" alt="GitHub License">
     </a>
-</div>
 
-<p align="center">
-    An ESLint plugin with rules to report loss of original <a href="https://nodejs.org/api/errors.html#error_cause">error cause</a>, when re-throwing errors.
-</p>
+An ESLint plugin with rules to report loss of original <a href="https://nodejs.org/api/errors.html#error_cause">error cause</a>, when re-throwing errors.
 
 ![code-art](https://github.com/user-attachments/assets/d4a68b8d-897b-4df9-a605-f24850d5759d)
 
