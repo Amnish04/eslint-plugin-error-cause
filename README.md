@@ -3,7 +3,7 @@
 This rule has been added to [`eslint`](https://github.com/eslint/eslint) project, and the docs can be found [here](https://eslint.org/docs/latest/rules/preserve-caught-error).
 This repo is no longer maintained and is archived.
 
-# eslint-plugin-error-cause
+## eslint-plugin-error-cause
 
 <a href="https://www.npmjs.com/package/eslint-plugin-error-cause">
         <img src="https://img.shields.io/npm/v/eslint-plugin-error-cause?color=dark" alt="NPM Version">
